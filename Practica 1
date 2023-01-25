@@ -1,0 +1,154 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Empleado
+{
+private:
+    int ClaveEmpleado;
+    string Nombre;
+    string Domicilio;
+    float Sueldo;
+    string ReportaA;
+protected:
+public:
+    Empleado(int,string,string,float,string);
+    void Imprime()
+    {
+        cout<<"\nClave: "<<ClaveEmpleado<<"\nNombre: "<<Nombre<<"\nDomicilio: "<<Domicilio<<"\nSueldo: "<<Sueldo<<"\nPersona reportada: "<<ReportaA;
+    }
+    void CambiaDomic(string);
+    void CambiaReportaA(string);
+    void ActualSueldo(float);
+
+    void setDomic(string);
+    void setSueld(float);
+    void setCambiaR(string);
+};
+
+void Empleado::setDomic(string domic_)
+{
+    Domicilio=domic_;
+}
+
+void Empleado::CambiaDomic(string d)
+{
+    Domicilio=d;
+}
+
+void Empleado::setSueld(float suel_)
+{
+    Sueldo=suel_;
+}
+
+void Empleado::ActualSueldo(float s)
+{
+    Sueldo=s;
+}
+
+void Empleado::setCambiaR(string camb_)
+{
+    ReportaA=camb_;
+}
+
+void Empleado::CambiaReportaA(string d)
+{
+    ReportaA=d;
+}
+
+Empleado::Empleado(int clave,string nom,string dom,float suel,string repor)
+{
+    ClaveEmpleado = clave;
+    Nombre = nom;
+    Domicilio = dom;
+    Sueldo = suel;
+    ReportaA = repor;
+}
+
+
+int main()
+{
+int aux,c,b=0;
+string d;
+float s;
+
+    Empleado JefePlanta(1,"Andres Flores","Quintas del bosque 2",9000,"Alejandro");
+    Empleado JefePersonal(2, "Cristofer Villalvazo","Real del bosque 481",7000,"Jimena");
+    do{
+        cout<<"\n\n1.Cambiar Domicilio\n2.Actualizar sueldo\n3.Imprimir datos\n4.Cambiar nombre de persona reportada\n5.Salir\nSeleccione una opcion: ";
+        cin >>aux;
+        switch(aux){
+        case 1:
+            cout<<"\nClave del empleado: ";
+            cin>>c;
+            if(c==1)
+            {
+                cout<<"\nEscriba el nuevo domicilio del empleado: ";
+                cin.ignore();
+                getline(cin, d);
+                JefePlanta.CambiaDomic(d);
+            }else if(c==2)
+            {
+                cout<<"\nEscriba el nuevo domicilio del empleado: ";
+                cin.ignore();
+                getline(cin, d);
+                JefePersonal.CambiaDomic(d);
+            }else
+                cout<<"\nOpcion no valida";
+            break;
+        case 2:
+            cout<<"\nClave del empleado: ";
+            cin>>c;
+            if(c==1)
+            {
+                cout<<"\nEscriba el sueldo actualizado: ";
+                cin>>s;
+                JefePlanta.ActualSueldo(s);
+            }else if(c==2)
+            {
+                cout<<"\nEscriba el sueldo actualizado: ";
+                cin>>s;
+                JefePersonal.ActualSueldo(s);
+            }else
+                cout<<"\nOpcion no valida";
+            break;
+        case 3:
+            cout<<"\n1.Jefe de planta\n2.Jefe de personal\nSeleccione una opcion: ";
+            cin>>c;
+            if(c==1)
+            {
+                JefePlanta.Imprime();
+            }else if(c==2)
+            {
+                JefePersonal.Imprime();
+            }else
+                cout<<"\nOpcion no valida";
+            break;
+        case 4:
+            cout<<"\nClave del empleado: ";
+            cin>>c;
+            if(c==1)
+            {
+                cout<<"\nEscriba la nueva persoba reportada: ";
+                cin.ignore();
+                getline(cin, d);
+                JefePlanta.CambiaReportaA(d);
+            }else if(c==2)
+            {
+                cout<<"\nEscriba la nueva persona reportada: ";
+                cin.ignore();
+                getline(cin, d);
+                JefePersonal.CambiaDomic(d);
+            }else
+                cout<<"\nOpcion no valida";
+            break;
+        case 5:
+            break;
+        default:
+            cout<<"\nOpcion no valida.";
+        }
+    }while(aux!=5);
+
+    return 0;
+}
