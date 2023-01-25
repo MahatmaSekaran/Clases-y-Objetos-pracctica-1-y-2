@@ -1,0 +1,89 @@
+#include<iostream>
+
+using namespace std;
+
+class Materia
+{
+private:
+    int Clave;
+    string Nombre,ProfesorTit,LibroTexto;
+protected:
+public:
+
+    Materia(int,string,string,string);
+    void Imprime()
+    {
+        cout<<"\nLos datos de Base de Datos son: \nClave: "<<Clave<<"\nNombre: "<<Nombre<<"\nProfesor/a: "<<ProfesorTit<<"\nLibro: "<<LibroTexto<<"\n";
+    }
+    void CambiaClave(int);
+    void CambiaProfe(string);
+
+    void setCambia(int);
+    void setProfe(string);
+};
+
+Materia::Materia(int clav,string nom,string profe,string libro)
+{
+    Clave=clav;
+    Nombre=nom;
+    ProfesorTit=profe;
+    LibroTexto=libro;
+}
+
+void Materia::CambiaClave(int c)
+{
+    Clave=c;
+}
+
+void Materia::setCambia(int clav_)
+{
+    Clave-clav_;
+}
+
+void Materia::CambiaProfe(string c)
+{
+    ProfesorTit=c;
+}
+
+void Materia::setProfe(string prof_)
+{
+    ProfesorTit=prof_;
+}
+
+
+
+int main()
+{
+int aux,c;
+string p;
+
+    Materia Programacion(45128,"Programacion","Pablo Perez","Programacion en C");
+    Materia BaseDatos(45128,"Base de Datos","Michel Mendoza","Fundamento en base de datos");
+
+    do
+    {
+        cout<<"\n1.Nuevo codigo para Programacion\n2.Nuevo nombre Profesor de Base de Datos\n3.Mostrar datos de Base de Datos\n4.Salir\nSelecciona una opcion: ";
+        cin>>aux;
+        switch(aux){
+            case 1:
+                cout<<"\nIngrese la nueva clave de Programacion: ";
+                cin>>c;
+                Programacion.CambiaClave(c);
+                break;
+            case 2:
+                cout<<"\nIngrese el nuevo nombre del maestro de Fundamento en Base de Datos: ";
+                cin.ignore();
+                getline(cin, p);
+                BaseDatos.CambiaProfe(p);
+                break;
+            case 3:
+                BaseDatos.Imprime();
+                break;
+            case 4:
+                break;
+            default:
+                cout<<"\nOpcion no valida.";
+        }
+    }while(aux!=4);
+return 0;
+}
